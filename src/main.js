@@ -5,6 +5,7 @@
 import './styles/index.css';
 import { initRouter } from './ui/app.js';
 import { toggleLang, getLang, t } from './engine/i18n.js';
+import { inject } from '@vercel/analytics';
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
   setupLangToggle();
   updateStaticUI();
   initRouter();
+  
+  // Initialize Vercel Web Analytics
+  inject();
 });
 
 /**
