@@ -77,6 +77,7 @@ const SADESATI_PROMPT = `You are a Vedic astrologer interpreting Sade Sati (Satu
 - Be concise. Each section should be 2-3 sentences max.
 - Do not predict catastrophic events. Frame as influences and tendencies.
 - Reference the specific transit phase (rising/peak/setting), Saturn's current sign, and the person's Moon sign.
+- If the person is NOT currently in Sade Sati (isActive is false), explain what Sade Sati means for their Moon sign, when it may occur based on their timeline, and how to prepare. Adjust all sections accordingly.
 - Be reassuring. Sade Sati is a period of growth through challenges, not punishment.
 - Do not use markdown headers or bullet points. Write in plain flowing paragraphs.
 - Separate sections with a blank line.
@@ -132,7 +133,7 @@ export default async function handler(req, res) {
     maxTokens = 600;
   } else if (type === 'sadesati') {
     const { sadeSatiData } = body;
-    if (!sadeSatiData || !sadeSatiData.phase || !sadeSatiData.moonSign) {
+    if (!sadeSatiData || !sadeSatiData.moonSign) {
       return res.status(400).json({ error: 'Invalid Sade Sati data.' });
     }
     systemPrompt = SADESATI_PROMPT;

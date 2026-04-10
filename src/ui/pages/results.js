@@ -401,6 +401,7 @@ function displayResults(container, results, birthData) {
     output.innerHTML = '<p class="text-muted" style="text-align:center; font-size:0.9rem;">Interpreting Saturn\'s influence...</p>';
 
     const sadeSatiData = {
+      isActive: sadeSati.isActive || false,
       phase: sadeSati.phase,
       phaseName: sadeSati.phaseInfo?.name,
       phaseDescription: sadeSati.phaseInfo?.description,
@@ -409,6 +410,7 @@ function displayResults(container, results, birthData) {
       saturnRetrograde: sadeSati.saturnRetrograde || false,
       nakshatra: birthNakshatra.name,
       dhaiya: { isActive: dhaiya.isActive, type: dhaiya.type },
+      timeline: (sadeSati.timeline || []).map(p => ({ name: p.name, sign: p.sign, approximateStart: p.approximateStart, approximateEnd: p.approximateEnd, isCurrent: p.isCurrent })),
     };
 
     try {
